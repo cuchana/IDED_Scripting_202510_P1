@@ -92,30 +92,30 @@ namespace TestProject1
         }
         private static bool BuscarNum(List<int> list, int target)
         {
-            int left = 0, right = list.Count - 1;
+            int left = 0, right = list.Count - 1; // define los limites de busqueda
             while (left <= right)
             {
-                int mid = left + (right - left) / 2;
-                if (list[mid] == target)
+                int mid = left + (right - left) / 2; // calcula la mitad, o sea el inidce medio
+                if (list[mid] == target) // si el numero que buscamos esta de casualidad jsuto en la mitad, retorna true
                     return true;
-                else if (list[mid] < target)
+                else if (list[mid] < target) // si es menor busca en la mitad derecha
                     left = mid + 1;
-                else
+                else // si es mayor busca en la izquierda
                     right = mid - 1;
             }
-            return false;
+            return false; // si no lo encuentra retorna false
         }
 
         // metodo que verifica si es primo
         private static bool IsPrime(uint num)
         {
-            if (num < 2) return false;
-            for (uint i = 2; i * i <= num; i++)
+            if (num < 2) return false; // menor que 2 no es primo
+            for (uint i = 2; i * i <= num; i++) // verifica si el numero es divisible entre 2 o la raiz del numero
             {
                 if (num % i == 0)
                     return false;
             }
-            return true;
+            return true; // si no encuentra divisores, retorna true
         }
     }
 }
