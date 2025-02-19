@@ -65,8 +65,30 @@ namespace TestProject1
 
         internal static bool FoundElementAfterSorted(List<int> list, int value)
         {
-            list.Sort();// ordena la lista de menos a mayor
-            return BuscarNum(list, value); // metodo que busca el numero en nuestra lista
+            int n = list.Count; // guardamos el tamaño de nuestra lista
+
+            for (int i = 0; i < n - 1; i++) // recorremos la lista hasta el´penultimo elemento
+            {
+                int minIndex = i; // suponemos que el elemnto actual es el menor 
+
+                // buscar el menor elemento en la parte no ordenada
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (list[j] < list[minIndex]) // comaparamos valores
+                    {
+                        minIndex = j; // actualizamos el indice del menor
+                    }
+                }
+
+                // intercambiar si encontramos un número menor
+                if (minIndex != i)
+                {
+                    int temp = list[i]; // guardamos ese valor en una lista temporal
+                    list[i] = list[minIndex]; // movwmos el menor valor a la posicion actual
+                    list[minIndex] = temp; // restauramos el valor original en la nueva posicion
+                }
+            }
+                return BuscarNum(list, value); // metodo que busca el numero en nuestra lista
         }
         private static bool BuscarNum(List<int> list, int target)
         {
